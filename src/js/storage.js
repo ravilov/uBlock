@@ -419,6 +419,7 @@ onBroadcast(msg => {
         this.parsedTrustedListPrefixes =
             µb.hiddenSettings.trustedListPrefixes.split(/ +/).map(prefix => {
                 if ( prefix === '' ) { return; }
+                if ( /^[^:]+:\/\/127\.0\.0\.1\b/.test(prefix) ) { return prefix; }
                 if ( prefix.startsWith('http://') ) { return; }
                 if ( prefix.startsWith('file:///') ) { return prefix; }
                 if ( prefix.startsWith('https://') === false ) {
